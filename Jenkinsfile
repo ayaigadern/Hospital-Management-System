@@ -31,7 +31,8 @@ pipeline {
         stage('Archive Artifacts') {
             steps {
                 // Archive the generated JAR/WAR files
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+
             }
         }
     }
