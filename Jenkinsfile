@@ -5,7 +5,7 @@ pipeline {
         // GitHub credentials ID in Jenkins
         GIT_CREDS = credentials('github-aya-creds')
         // SonarQube token stored as secret text in Jenkins
-        SONAR_TOKEN = credentials('sonar-token')
+        SONAR_TOKEN = credentials('Sonar-token')
     }
 
     stages {
