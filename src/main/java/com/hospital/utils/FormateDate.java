@@ -21,10 +21,10 @@ public class FormateDate {
 	
 	public static String getStringDate(Date date)
 	{
-		DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
 		String reportDate = df.format(date);
-		
+
 		return reportDate;
 	}
 	
