@@ -1,10 +1,18 @@
 pipeline {
     agent any
 
+    tools {
+        jdk 'JDK17'
+        maven 'Maven3'
+    }
+
     environment {
-        // GitHub credentials ID in Jenkins
+        JAVA_HOME = tool(name: 'JDK17', type: 'jdk')
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+        MAVEN_HOME = tool(name: 'Maven3', type: 'maven')
+        PATH = "${MAVEN_HOME}/bin:${PATH}"
+
         GIT_CREDS = credentials('github-aya-creds')
-        // SonarQube token stored as secret text in Jenkins
         SONAR_TOKEN = credentials('Sonar-token')
     }
 
@@ -17,38 +25,47 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Check Java & Maven') {
             steps {
-                // Run Maven build
-                sh 'mvn clean package'
+                sh 'java -version'
+                sh 'javac -version'
+                sh 'mvn -version'
             }
         }
 
-        stage('Test') {
+        stage('Build & Test') {
             steps {
-                // Run Maven tests
-                sh 'mvn test'
+                sh 'mvn clean verify -DskipTests=false'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
-                // Use SonarQube environment configured in Jenkins
                 withSonarQubeEnv('SonarQube') {
                     sh """
                     mvn sonar:sonar \
-                    -Dsonar.projectKey=Hospital-Management-System \
-                    -Dsonar.host.url=$SONAR_HOST_URL \
-                    -Dsonar.login=$SONAR_TOKEN \
-                    -Dsonar.java.binaries=target/classes
+                        -Dsonar.projectKey=Hospital-Management-System \
+                        -Dsonar.host.url=$SONAR_HOST_URL \
+                        -Dsonar.login=$SONAR_TOKEN \
+                        -Dsonar.java.binaries=target/classes
                     """
                 }
             }
         }
 
+        stage('Debug Java Version') {
+            steps {
+                sh '''
+                    echo "JAVA_HOME: $JAVA_HOME"
+                    $JAVA_HOME/bin/java -version
+                    which java
+                    java -version
+                '''
+            }
+        }
+
         stage('Archive Artifacts') {
             steps {
-                // Archive the generated WAR files
                 archiveArtifacts artifacts: 'target/*.war', fingerprint: true
             }
         }
@@ -56,7 +73,6 @@ pipeline {
 
     post {
         always {
-            // Publish JUnit test results
             junit 'target/surefire-reports/*.xml'
         }
     }
