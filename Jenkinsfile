@@ -3,18 +3,17 @@ pipeline {
 
     tools {
         jdk 'JDK17'
-        maven 'Maven3'
+        maven 'Maven'
     }
 
     environment {
-        JAVA_HOME = tool(name: 'JDK17', type: 'jdk')
-        PATH = "${JAVA_HOME}/bin:${env.PATH}"
-        MAVEN_HOME = tool(name: 'Maven3', type: 'maven')
-        PATH = "${MAVEN_HOME}/bin:${PATH}"
+    JAVA_HOME = tool(name: 'JDK17', type: 'jdk')
+    MAVEN_HOME = tool(name: 'Maven', type: 'maven')
+    PATH = "${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${env.PATH}"
 
-        GIT_CREDS = credentials('github-aya-creds')
-        SONAR_TOKEN = credentials('Sonar-token')
-    }
+    GIT_CREDS = credentials('github-aya-creds')
+    SONAR_TOKEN = credentials('Sonar-token')
+}
 
     stages {
         stage('Checkout') {
