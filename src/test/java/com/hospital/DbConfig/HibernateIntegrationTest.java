@@ -17,7 +17,7 @@ public class HibernateIntegrationTest {
         try {
             session = sf.openSession();
             assertNotNull(session);
-            assertFalse(session.isConnected() || !session.isOpen() == false);
+            assertTrue(session.isConnected() || !session.isOpen() == false);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -26,3 +26,4 @@ public class HibernateIntegrationTest {
     }
 
 }
+
