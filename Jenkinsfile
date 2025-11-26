@@ -44,7 +44,7 @@ pipeline {
         withSonarQubeEnv('SonarQube') {
             sh """
             mvn sonar:sonar \
-                -Dsonar.projectKey=com.mycompany:HospitalSystemV2 \
+                -Dsonar.projectKey=Hospital-Management-System \
                 -Dsonar.host.url=$SONAR_HOST_URL \
                 -Dsonar.login=$SONAR_TOKEN \
                 -Dsonar.java.binaries=target/classes \
