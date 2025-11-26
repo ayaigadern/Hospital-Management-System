@@ -49,5 +49,6 @@ public class PasswordEncryptionTest {
         String expected = java.util.Base64.getEncoder().encodeToString(digest);
         assertEquals(expected, encrypted);
     }
+    //test
 
 }
