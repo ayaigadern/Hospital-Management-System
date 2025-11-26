@@ -123,6 +123,13 @@
             <version>2.2.224</version>
             <scope>test</scope>
         </dependency>
+        <!-- Servlet API needed for servlet classes during tests -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,6 +1,9 @@
 package com.hospital.models;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +37,32 @@ public class PatientTest {
 
         assertNotNull(p.getBloodGroup());
         assertEquals("A+", p.getBloodGroup().getBloodGroupName());
+        assertEquals("Jane Doe", p.getNextOfKin().getFullName());
+    }
+
+    @Test
+    public void fullObjectRoundtrip() {
+        Patient p = new Patient();
+        p.setPatientId(123);
+        p.setName("John Doe");
+        p.setEmail("john@example.com");
+        p.setAddress("123 Main St");
+        p.setPhone(5551234L);
+        Date now = new Date();
+        p.setDob(now);
+
+        NextOfKin nok = new NextOfKin();
+        nok.setFullName("Jane Doe");
+        nok.setPhone("999-888-777");
+        p.setNextOfKin(nok);
+
+        assertEquals(Integer.valueOf(123), p.getPatientId());
+        assertEquals("John Doe", p.getName());
+        assertEquals("john@example.com", p.getEmail());
+        assertEquals("123 Main St", p.getAddress());
+        assertEquals(5551234L, p.getPhone());
+        assertEquals(now, p.getDob());
+        assertNotNull(p.getNextOfKin());
         assertEquals("Jane Doe", p.getNextOfKin().getFullName());
     }
 

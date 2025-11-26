@@ -1,6 +1,7 @@
 package com.hospital.DbConfig;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,8 +17,9 @@ public class HibernateIntegrationTest {
         Session session = null;
         try {
             session = sf.openSession();
-            assertNotNull(session);
-            assertTrue(session.isConnected() || !session.isOpen() == false);
+            assertNotNull(session, "Session should not be null");
+            // basic sanity: session is either open or can report connection status
+            assertTrue(session.isOpen() || !session.isOpen() == false);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
