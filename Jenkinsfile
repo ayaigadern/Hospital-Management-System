@@ -13,6 +13,7 @@ pipeline {
 
     GIT_CREDS = credentials('github-aya-creds')
     SONAR_TOKEN = credentials('Sonar-token')
+    SONAR_HOST_URL = "http://localhost:9000"
 }
 
     stages {
@@ -39,18 +40,20 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh """
-                    mvn sonar:sonar \
-                        -Dsonar.projectKey=Hospital-Management-System \
-                        -Dsonar.host.url=$SONAR_HOST_URL \
-                        -Dsonar.token=$SONAR_TOKEN \
-                        -Dsonar.java.binaries=target/classes
-                    """
-                }
-            }
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            sh """
+            mvn sonar:sonar \
+                -Dsonar.projectKey=com.mycompany:HospitalSystemV2 \
+                -Dsonar.host.url=$SONAR_HOST_URL \
+                -Dsonar.login=$SONAR_TOKEN \
+                -Dsonar.java.binaries=target/classes \
+                -Dsonar.coverage.jacoco.xmlReportPaths=target/jacoco-report/jacoco.xml
+            """
         }
+    }
+}
+
 
         stage('Debug Java Version') {
             steps {

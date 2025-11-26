@@ -123,17 +123,39 @@
             <version>2.2.224</version>
             <scope>test</scope>
         </dependency>
-        <!-- Servlet API needed for servlet classes during tests -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+        <plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.10</version>
+    <executions>
+        <!-- Préparer l'agent JaCoCo pour enregistrer la couverture -->
+        <execution>
+            <id>prepare-agent</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+
+        <!-- Générer le rapport XML pour Sonar -->
+        <execution>
+            <id>report</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>${project.build.directory}/jacoco-report</outputDirectory>
+                <formats>
+                    <format>XML</format>
+                </formats>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
             <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

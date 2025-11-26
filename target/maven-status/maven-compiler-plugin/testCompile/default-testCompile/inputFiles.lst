@@ -10,7 +10,6 @@
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/EmployeeTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/DoctorTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/LabTest.java
-/mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/authentication/LoginServiceTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/ReceptioniestTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/DbConfig/HibernateIntegrationTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/CategoryTest.java
@@ -18,7 +17,6 @@
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/PatientTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/RoomTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/XrayTest.java
-/mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/authentication/ProcessRoutingTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/DrugTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/BookBedTest.java
 /mnt/c/Users/User/Desktop/Hospital-Management-System/src/test/java/com/hospital/models/NextOfKinTest.java
