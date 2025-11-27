@@ -7,9 +7,9 @@ pipeline {
     }
 
     environment {
-   //JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
-    //MAVEN_HOME = '/usr/share/maven'
-    //PATH = "${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${env.PATH}"
+//    JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+//     MAVEN_HOME = '/usr/share/maven'
+//     PATH = "${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${env.PATH}"
 
     GIT_CREDS = credentials('github-aya-creds')
     SONAR_TOKEN = credentials('Sonar-token')
