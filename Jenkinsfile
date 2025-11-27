@@ -65,6 +65,12 @@ pipeline {
                 '''
             }
         }
+        stage('Debug Maven') {
+    steps {
+        sh 'echo $PATH'
+        sh 'mvn -version'
+    }
+}
 
         stage('Archive Artifacts') {
             steps {
