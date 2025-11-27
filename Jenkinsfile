@@ -8,7 +8,7 @@ pipeline {
 
     environment {
     JAVA_HOME = tool(name: 'JDK17', type: 'jdk')
-    MAVEN_HOME = tool(name: 'Maven', type: 'maven')
+    MAVEN_HOME = '/opt/maven'
     PATH = "${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${env.PATH}"
 
     GIT_CREDS = credentials('github-aya-creds')
