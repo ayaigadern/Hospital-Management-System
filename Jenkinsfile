@@ -78,6 +78,16 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.war', fingerprint: true
             }
         }
+        stage('Deploy to Kubernetes') {
+    steps {
+        sh '''
+            kubectl apply -f Kubernetes/deployment.yaml
+            kubectl apply -f Kubernetes/service.yaml
+            kubectl rollout restart deployment hospital-management-system
+        '''
+    }
+}
+
     }
 
     post {
@@ -86,3 +96,4 @@ pipeline {
         }
     }
 }
+
