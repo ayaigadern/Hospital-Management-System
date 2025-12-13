@@ -14,6 +14,8 @@ pipeline {
         GIT_CREDS      = credentials('github-aya-creds')
         SONAR_TOKEN    = credentials('Sonar-token')
         SONAR_HOST_URL = "http://localhost:9000"
+        DOCKER_CREDS   = credentials('dockerhub-creds')
+        DOCKER_IMAGE   = "ayaigadern/hospital-management-system"
     }
 
     stages {
@@ -78,6 +80,25 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.war', fingerprint: true
             }
         }
+        stage('Build Docker Image') {
+    steps {
+        sh '''
+            docker build -t $DOCKER_IMAGE:${BUILD_NUMBER} .
+            docker tag $DOCKER_IMAGE:${BUILD_NUMBER} $DOCKER_IMAGE:latest
+        '''
+    }
+}
+        stage('Push Docker Image') {
+    steps {
+        sh '''
+            echo $DOCKER_CREDS_PSW | docker login -u $DOCKER_CREDS_USR --password-stdin
+            docker push $DOCKER_IMAGE:${BUILD_NUMBER}
+            docker push $DOCKER_IMAGE:latest
+        '''
+    }
+}
+
+
         stage('Deploy to Kubernetes') {
     steps {
         sh '''
@@ -96,5 +117,6 @@ pipeline {
         }
     }
 }
+
 
 
