@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: HospitalManagementSystem
-        image: ayaigadern/hospital-system:latest
+        image: ayaigadern/hospital-management-system:latest
+
         imagePullPolicy: Always
         ports: 
         - containerPort: 8080
@@ -26,4 +27,5 @@ spec:
             memory: 1000Mi
           limits:
             memory: 1500Mi
+
 
