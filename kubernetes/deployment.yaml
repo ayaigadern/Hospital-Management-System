@@ -1,31 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Hospital-Management-System
+  name: hospital-management-system
   labels:
-    app: HospitalManagementSystem
+    app: hospital-management-system
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: HospitalManagementSystem
+      app: hospital-management-system
   template:
     metadata:
       labels:
-        app: HospitalManagementSystem
+        app: hospital-management-system
     spec:
       containers:
-      - name: HospitalManagementSystem
+      - name: hospital-management-system
         image: ayaigadern/hospital-management-system:latest
-
         imagePullPolicy: Always
-        ports: 
+        ports:
         - containerPort: 8080
-        resources: 
-          requests:
-            cpu: 500m
-            memory: 1000Mi
-          limits:
-            memory: 1500Mi
-
-
