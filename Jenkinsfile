@@ -83,7 +83,7 @@ pipeline {
         sh '''
             kubectl apply -f Kubernetes/deployment.yaml
             kubectl apply -f Kubernetes/service.yaml
-            kubectl rollout restart deployment hospital-management-system
+            kubectl rollout restart deployment Hospital-Management-System
         '''
     }
 }
@@ -96,4 +96,5 @@ pipeline {
         }
     }
 }
+
 
