@@ -1,4 +1,4 @@
-# Runtime only – no Maven here
+
 FROM tomcat:9.0-jre17
 
 # Clean default apps
@@ -11,4 +11,5 @@ COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
+
 
